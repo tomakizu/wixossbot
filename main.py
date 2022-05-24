@@ -17,7 +17,7 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if message.content.startswith('!flip'):
+    if message.content.startswith('!flip') or message.content.startswith('！flip'):
         title = random.choice(['你係先攻', '你係後攻'])
         
         if message.author.id == os.getenv('SUZU_DISCORD_ID'):

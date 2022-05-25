@@ -27,6 +27,14 @@ async def on_message(message):
         
         await message.reply(embed=discord.Embed(title=title, description=description, color=discord.Color.blue()))
 
+    if message.content.startswith('!choose') or message.content.startswith('！choose'):
+        string  = message.content.split('choose ')[1]
+        choices = string.split(' ')
+        if len(choices) > 1:
+            await message.reply(embed=discord.Embed(title='「' + random.choice(choices) + '」', description='嗱幫你揀咗喇，唔好反口啊。', color=discord.Color.green()))
+        else:
+            await message.reply(embed=discord.Embed(title='點揀啊', description='下次比夠2個以上選擇我先好叫我揀', color=discord.Color.red()))
+
 @tasks.loop(hours=1)
 async def keep_alive():
     pass

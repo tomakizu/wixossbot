@@ -19,14 +19,7 @@ async def on_message(message):
         return
 
     if '新手' in message.content and str(message.author.id) in bada_trigger_ids:
-        text = '巴打 我留意左你好耐\n \
-                你真係好幽默\n \
-                我自問都算個ok幽默既人 但係你幽默感比我真係高十幾二十倍\n \
-                錯 應該係100倍先岩\n \
-                估唔到我係呢個post竟然見識到你既威力\n \
-                我真係笑到爆左肚 依家一路打字一路撿返d腸呀內臟呀腎呀\n \
-                塞返落個肚到\n \
-                你有冇諗過未來幾個月去紅館開棟篤笑?'
+        text = '巴打 我留意左你好耐\n你真係好幽默\n我自問都算個ok幽默既人 但係你幽默感比我真係高十幾二十倍\n錯 應該係100倍先岩\n估唔到我係呢個post竟然見識到你既威力\n我真係笑到爆左肚 依家一路打字一路撿返d腸呀內臟呀腎呀\n塞返落個肚到\n你有冇諗過未來幾個月去紅館開棟篤笑?'
         await message.reply(text)
 
     if message.content.startswith('!flip') or message.content.startswith('！flip'):

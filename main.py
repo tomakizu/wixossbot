@@ -6,7 +6,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 client = discord.Client()
-bada_trigger_ids = os.getenv('BADA_TRIGGER_IDS').split(',')
 
 @client.event
 async def on_ready():

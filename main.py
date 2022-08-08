@@ -21,6 +21,12 @@ async def on_message(message):
     if message.author == client.user:
         return
 
+    if message.content.startswith('!bada') or message.content.startswith('！bada'):
+        if message.reference is not None:
+            await message.channel.send(get_bada_text(), reference=message.reference)
+        else:
+            await message.channel.send(get_bada_text())
+
     if '新手' in message.content and discord.utils.get(message.guild.roles, name='唔係新手') in message.author.roles:
         await message.reply(get_bada_text())
 

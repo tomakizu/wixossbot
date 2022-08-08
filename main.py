@@ -39,6 +39,18 @@ async def on_message(message):
         else:
             await message.reply(embed=discord.Embed(title='點揀啊', description='下次比夠2個以上選擇我先好叫我揀', color=discord.Color.red()))
 
+    if message.content.startswith('!marksix') or message.content.startswith('！marksix'):
+        num_count = 0
+        num_list = []
+        while num_count < 6:
+            num = random.randint(1, 49)
+            if num not in num_list:
+                num_list.append(num)
+                num_count += 1
+        # sort the list
+        num_list.sort()
+        await message.reply(embed=discord.Embed(title=', '.join(str(num) for num in num_list), description='嗱幫你揀咗喇，唔好反口啊。', color=discord.Color.blue()))
+
 @tasks.loop(hours=1)
 async def keep_alive():
     pass

@@ -35,6 +35,9 @@ async def on_message(message):
         
         if str(message.author.id) == os.getenv('SUZU_DISCORD_ID'):
             description = '鈴姐咁勁，點同你打deck'
+        elif str(message.author.id) in os.getenv('JEFF_DISCORD_IDS').split(','):
+            description = title + ', OPEN!'
+            title = '又自私打deck'
         else:
             description = 'OPEN!'
         

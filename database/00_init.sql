@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS activity (
     activity_date DATE NOT NULL,
     activity_time TIME NOT NULL,
     FOREIGN KEY (activity_type_id) REFERENCES activity_type(id),
-    FOREIGN KEY (activity_shop_id) REFERENCES card_shop(id)
+    FOREIGN KEY (card_shop_id) REFERENCES card_shop(id)
 );
 
 INSERT INTO card_shop (shop_name, shop_address) VALUES 

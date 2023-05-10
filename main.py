@@ -51,7 +51,6 @@ async def query_daily_event():
     current_time = datetime.now().strftime('%H:%M')
 
     # only send message at 8am
-    print(current_time)
     if current_time != '08:00':
         return
     

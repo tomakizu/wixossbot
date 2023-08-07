@@ -68,10 +68,10 @@ async def on_message(message):
         database.close()
         
         if len(result) == 0:
-            await message.author.send('未來活動: 無')
+            await message.author.send('未來官方活動: 無')
             return
         
-        text = '未來活動: \n\n'
+        text = '未來官方活動: \n\n'
         for row in result:
             activity_time = str(row[0]) + ' ' + str(row[1]).split(':')[0] + ':' + str(row[1]).split(':')[1]
             text += str(activity_time) + ' ' + str(row[2]) + '\n' + str(row[3]) + '\n' + str(row[4]) + '\n\n'
@@ -106,10 +106,10 @@ async def query_daily_event():
     database.close()
 
     if len(result) == 0:
-        await client.get_channel(int(os.getenv('ANNOUNCEMENT_CHANNEL_ID'))).send(str(current_date) + ' 是日活動: 無')
+        await client.get_channel(int(os.getenv('ANNOUNCEMENT_CHANNEL_ID'))).send(str(current_date) + ' 是日官方活動: 無')
         return
     
-    text = str(current_date) + ' 是日活動: \n\n'
+    text = str(current_date) + ' 是日官方活動: \n\n'
     for row in result:
         activity_time = str(row[0]).split(':')[0] + ':' + str(row[0]).split(':')[1]
         text += str(activity_time) + ' ' + str(row[1]) + '\n' + str(row[2]) + '\n' + str(row[3]) + '\n\n'

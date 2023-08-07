@@ -58,7 +58,7 @@ async def on_message(message):
 
         cursor = database.cursor()
         cursor.execute('SELECT activity.activity_date, activity.activity_time, activity_type.type_name, \
-                       card_shop.shop_name, card_shop.shop_address \
+                       card_shop.shop_name, card_shop.shop_address, activity.remarks \
                        FROM activity \
                        INNER JOIN activity_type ON activity.activity_type_id = activity_type.id \
                        INNER JOIN card_shop ON activity.card_shop_id = card_shop.id \
@@ -74,7 +74,8 @@ async def on_message(message):
         text = '未來官方活動: \n\n'
         for row in result:
             activity_time = str(row[0]) + ' ' + str(row[1]).split(':')[0] + ':' + str(row[1]).split(':')[1]
-            text += str(activity_time) + ' ' + str(row[2]) + '\n' + str(row[3]) + '\n' + str(row[4]) + '\n\n'
+            text += str(activity_time) + ' ' + str(row[2]) + (' (' + str(row[5]) + ')' if row[5] != None else '') + '\n'
+            text += str(row[3]) + ('\n' if len(str(row[3])) > 0 else '') + str(row[4]) + '\n\n'
 
         await message.author.send(text)
 
@@ -96,7 +97,8 @@ async def query_daily_event():
     )
 
     cursor = database.cursor()
-    cursor.execute('SELECT activity.activity_time, activity_type.type_name, card_shop.shop_name, card_shop.shop_address \
+    cursor.execute('SELECT activity.activity_time, activity_type.type_name, \
+                   card_shop.shop_name, card_shop.shop_address, activity.remarks \
                    FROM activity \
                    INNER JOIN activity_type ON activity.activity_type_id = activity_type.id \
                    INNER JOIN card_shop ON activity.card_shop_id = card_shop.id \
@@ -112,7 +114,8 @@ async def query_daily_event():
     text = str(current_date) + ' 是日官方活動: \n\n'
     for row in result:
         activity_time = str(row[0]).split(':')[0] + ':' + str(row[0]).split(':')[1]
-        text += str(activity_time) + ' ' + str(row[1]) + '\n' + str(row[2]) + '\n' + str(row[3]) + '\n\n'
+        text += str(activity_time) + ' ' + str(row[1]) + (' (' + str(row[4]) + ')' if row[4] != None else '') + '\n'
+        text += str(row[2]) + ('\n' if len(str(row[2])) > 0 else '') + str(row[3]) + '\n\n'
 
     await client.get_channel(int(os.getenv('ANNOUNCEMENT_CHANNEL_ID'))).send(text)
 
